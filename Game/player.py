@@ -11,7 +11,7 @@ class Player(pygame.sprite.Sprite):
         self.animation_speed=0.15
         self.image = self.animations['run'][self.frame_index]
         self.rect=self.image.get_rect(topleft = pos)
-        # self.bullets= pygame.sprite.Group()
+        self.bulletcount=10
 
         self.y_positions={1:305, 2:435, 3:565}
         self.dead = False
@@ -62,78 +62,14 @@ class Player(pygame.sprite.Sprite):
                 self.startdelay = pygame.time.get_ticks()
                 self.lane+= 1
 
-        
-            # if keys[pygame.K_UP]:
-            #     self.frame_index=0
-            #     if self.falling:
-            #         self.falling=False
-            #     self.jump()
-
-            # if keys[pygame.K_SPACE] and not self.attacking:
-            #     self.attacking=True
-            #     self.startattack=pygame.time.get_ticks()
-            #     self.frame_index=0
-            
-            # if keys[pygame.key.key_code("S")] and self.onrope:
-            #     self.rect.y+=1
-            
-            # if keys[pygame.key.key_code("W")] and self.onrope:
-            #     self.rect.y-=1
-
-            # if self.climbing and keys[pygame.key.key_code("D")]:
-            #     self.onrope=True
-            #     self.gravity=0
-            #     self.direction.y=0
-            # else:
-            #     self.gravity=0.4
-            #     self.onrope=False
-
     
 
     def get_status(self):
         keys = pygame.key.get_pressed()
-        # print(self.can_move)
         if not self.can_move:
             self.enddelay=pygame.time.get_ticks()
-            if(self.enddelay-self.startdelay>150):
+            if(self.enddelay-self.startdelay>200):
                 self.can_move=True
-        # if self.direction.y<0:
-        #     self.status='jump'
-        # elif self.direction.y>1:
-        #     self.status='fall'
-        # else:
-        #     if self.direction.x!=0:
-        #         self.status='run'
-        #     else:
-        #         self.status='idle'
-        # if self.attacking:
-        #     self.status='attack'
-        #     endattack=pygame.time.get_ticks()
-        #     if(endattack-self.startattack>670):
-        #         self.attacking=False
-        #         self.hasattacked=False
-        #     #pygame.time.set_timer(self.attacking=False, 700)
-        # if self.onrope:
-        #     self.status='climb'
-        #     if keys[pygame.key.key_code("W")] or keys[pygame.key.key_code("S")]:
-        #         self.animation_speed=0.15
-        #     else:
-        #         self.animation_speed=0
-        # else:
-        #     self.animation_speed=0.15
-
-        # if self.taking_damage:
-        #     self.status='take_hit'
-        #     self.direction.x=0
-        #     self.taking_damage=False
-
-        # if self.health==0:
-        #     self.status='dead'
-        #     self.dead=True
-                
-    
-
-        # self.bullets.update()
         
 
     def apply_gravity(self):
@@ -146,12 +82,8 @@ class Player(pygame.sprite.Sprite):
             print(self.direction.y, self.on_ground, self.onrope, self.falling)
 
     def update(self):
-        #self.prevx=self.rect.left
-        #self.prevy=self.rect.top
-        # self.get_input()
+      
         self.get_status()
         self.get_input()
         self.rect.y = self.y_positions[self.lane]
-        # print(self.lane)
         self.animate()
-        # self.healthbar.sprite.update((self.rect.x+5 ,self.rect.y-20))
