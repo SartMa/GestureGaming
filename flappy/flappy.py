@@ -1,4 +1,4 @@
-import pygame, sys, random 
+import pygame, sys, random, time
 
 def draw_floor():
 	screen.blit(floor_surface,(floor_x_pos,900))
@@ -7,12 +7,12 @@ def draw_floor():
 def create_pipe():
 	random_pipe_pos = random.choice(pipe_height)
 	bottom_pipe = pipe_surface.get_rect(midtop = (700,random_pipe_pos))
-	top_pipe = pipe_surface.get_rect(midbottom = (700,random_pipe_pos - 450))
+	top_pipe = pipe_surface.get_rect(midbottom = (700,random_pipe_pos - 500))
 	return bottom_pipe,top_pipe
 
 def move_pipes(pipes):
 	for pipe in pipes:
-		pipe.centerx -= 3
+		pipe.centerx -= 1
 	visible_pipes = [pipe for pipe in pipes if pipe.right > -50]
 	return visible_pipes
 
@@ -117,7 +117,7 @@ pipe_surface = pygame.image.load('./assets/pipe-green.png')
 pipe_surface = pygame.transform.scale2x(pipe_surface)
 pipe_list = []
 SPAWNPIPE = pygame.USEREVENT
-pygame.time.set_timer(SPAWNPIPE,1200)
+pygame.time.set_timer(SPAWNPIPE,5000)
 pipe_height = [400,600,800]
 
 game_over_surface = pygame.transform.scale2x(pygame.image.load('./assets/message.png').convert_alpha())
@@ -130,22 +130,30 @@ score_sound_countdown = 100
 SCOREEVENT = pygame.USEREVENT + 2
 pygame.time.set_timer(SCOREEVENT,100)
 
+control_act = 1
+c_start = 0
+
 while True:
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			pygame.quit()
 			sys.exit()
-		if event.type == pygame.KEYDOWN:
-			if event.key == pygame.K_UP and game_active:
+		
+		if event.type == pygame.KEYDOWN and control_act:
+			if event.key == pygame.K_DOWN and game_active:
 				bird_movement = 0
 				bird_movement -= 9
 				flap_sound.play()
-			if event.key == pygame.K_UP and game_active == False:
+				control_act = 0
+				c_start = time.time()
+			if event.key == pygame.K_DOWN and game_active == False:
 				game_active = True
 				pipe_list.clear()
 				bird_rect.center = (100,512)
 				bird_movement = 0
 				score = 0
+		if(time.time()- c_start > 0.25):
+			control_act = 1  
 
 		if event.type == SPAWNPIPE:
 			pipe_list.extend(create_pipe())
@@ -182,7 +190,7 @@ while True:
 
 
 	# Floor
-	floor_x_pos -= 0.5
+	floor_x_pos -= 1
 	draw_floor()
 	if floor_x_pos <= -576:
 		floor_x_pos = 0
