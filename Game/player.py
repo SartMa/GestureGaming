@@ -11,7 +11,7 @@ class Player(pygame.sprite.Sprite):
         self.animation_speed=0.15
         self.image = self.animations['run'][self.frame_index]
         self.rect=self.image.get_rect(topleft = pos)
-        self.bulletcount=10
+        self.bulletcount=100
 
         self.y_positions={1:305, 2:435, 3:565}
         self.dead = False
