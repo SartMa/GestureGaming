@@ -45,4 +45,8 @@ If you are facing problems please downgrade tensorflow to version 2.13 by runnin
 We can train it for the same gestures using images of different people than ourselves, at different positions and angles, in different environments.
 
 We can also add more gestures so there are more things that can be controlled.
+## References
+https://youtu.be/IOI0o3Cxv9Q?si=YFaalSEm1ngGW83O
+
 ## Demo Video
+https://youtu.be/ReFOmDXFMUs
