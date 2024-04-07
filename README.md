@@ -41,10 +41,6 @@ If you are facing problems please downgrade tensorflow to version 2.13 by runnin
 
 1. Controlling games
 2. It can be used as a sign language interpreter if trained on more data.
-## Applications
-
-1. Controlling games
-2. It can be used as a sign language interpreter if trained on more data.
 ## Further Improvements
 We can train it for the same gestures using images of different people than ourselves, at different positions and angles, in different environments.
 
