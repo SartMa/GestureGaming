@@ -17,8 +17,8 @@ def show_controls():
     # Create a Text widget to display the controls
     controls_text = """
     Controls:
-    - Lane Game: Show 'fist' to attack, 'two' to move up, 'five' to move down.
-    - Flappy Bird: Show 'two' to move up.
+    - Lane Game: Show 'fist' to attack, 'five' to move up, 'two' to move down.
+    - Flappy Bird: Show 'five' to move up.
     """
     button_control = tk.Button(control_window, **style, text="close", command=lambda: destroy(control_window), pady=10)
     controls_label = tk.Label(control_window, text=controls_text, justify="left", font=("Helvetica", 20))

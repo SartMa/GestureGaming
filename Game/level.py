@@ -14,7 +14,7 @@ class Level:
         self.setup_level()
         self.time=0
         self.phase=0
-        self.obeliskfreq = {0:100, 1: 90, 2:80, 3:70, 4:60, 5:50}
+        self.obeliskfreq = {0:150, 1: 130, 2:110, 3:100, 4:80, 5:70}
         self.phasetime=0
         self.gameover=False
         self.score=0
@@ -266,7 +266,7 @@ class Level:
 
         self.handle_mushmen()
         if not player.dead:
-            self.mushes.update(12+1*(self.phase))
+            self.mushes.update(8+1*(self.phase))
         self.mushes.draw(self.display_surface)
 
         self.handle_obelisks()

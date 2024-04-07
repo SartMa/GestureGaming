@@ -201,16 +201,16 @@ while True:
     if(score > 0.55):
         if(id == 0):
             keyboard.press(Key.space)
-            time.sleep(0.015)
+            time.sleep(0.020)
             keyboard.release(Key.space)
         if(id == 1):
-            keyboard.press(Key.up)
-            time.sleep(0.015)
-            keyboard.release(Key.up)
-        if(id == 2):
             keyboard.press(Key.down)
-            time.sleep(0.015)
+            time.sleep(0.018)
             keyboard.release(Key.down)
+        if(id == 2):
+            keyboard.press(Key.up)
+            time.sleep(0.016)
+            keyboard.release(Key.up)
     
     if cv2.waitKey(50) & 0xFF == ord('q'):
         cap.release()
